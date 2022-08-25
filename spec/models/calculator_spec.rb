@@ -2,7 +2,7 @@ require 'rails_helper'
 require "calculator"
 
 RSpec.describe Calculator, type: :model do
-  describe "task 1" do
+  describe "task 1/2" do
 
     before do
       @zero = Calculator.new("")
@@ -22,5 +22,15 @@ RSpec.describe Calculator, type: :model do
       expect(@two.add).to eq(3)
     end
 
+  end
+
+  describe "task 3" do
+    before do
+      @ex = Calculator.new("1\n,2,3")
+    end
+
+    it "returns the sum of all the numbers" do
+      expect(@ex.add).to eq(6)
+    end
   end
 end
