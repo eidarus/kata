@@ -33,4 +33,14 @@ RSpec.describe Calculator, type: :model do
       expect(@ex.add).to eq(6)
     end
   end
+
+  describe "task 4" do
+    before do
+      @ex = Calculator.new("//;\n1\n;2;3")
+    end
+
+    it "returns the sum of all the numbers" do
+      expect(@ex.add).to eq(6)
+    end
+  end
 end
