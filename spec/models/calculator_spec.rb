@@ -56,7 +56,7 @@ RSpec.describe Calculator, type: :model do
 
   describe "task 6" do
     before do
-      @ex = Calculator.new("//;\n1\n;2;3;1000")
+      @ex = Calculator.new("//;\n1\n;2;3;1001")
     end
 
     it "ignores numbers bigger than 1000" do

@@ -12,6 +12,8 @@ class Calculator < ApplicationRecord
       if x.to_i < 0
         negs.push(x.to_i)
         next
+      elsif x.to_i > 1000
+        next
       end
       sum = sum + x.to_i
     end
