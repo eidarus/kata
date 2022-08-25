@@ -53,4 +53,14 @@ RSpec.describe Calculator, type: :model do
       expect(@ex.add).to eq("negatives not allowed: -3")
     end
   end
+
+  describe "task 6" do
+    before do
+      @ex = Calculator.new("//;\n1\n;2;3;1000")
+    end
+
+    it "ignores numbers bigger than 1000" do
+      expect(@ex.add).to eq(6)
+    end
+  end
 end
