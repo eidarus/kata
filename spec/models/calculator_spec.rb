@@ -63,4 +63,14 @@ RSpec.describe Calculator, type: :model do
       expect(@ex.add).to eq(6)
     end
   end
+
+  describe "task 7" do
+    before do
+      @ex = Calculator.new("//[***]\n1***2***3")
+    end
+
+    it "finds the delimeter in the brackets" do
+      expect(@ex.add).to eq(6)
+    end
+  end
 end
