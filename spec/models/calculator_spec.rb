@@ -83,4 +83,14 @@ RSpec.describe Calculator, type: :model do
       expect(@ex.add).to eq(6)
     end
   end
+
+  describe "task 9" do
+    before do
+      @ex = Calculator.new("//[**][%%]\n1**2%%3")
+    end
+
+    it "finds all delimeters in the brackets, even when multiple chars" do
+      expect(@ex.add).to eq(6)
+    end
+  end
 end
