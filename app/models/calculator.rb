@@ -6,11 +6,11 @@ class Calculator < ApplicationRecord
   def add
     return 0 if @numbers == ""
 
-    delim = check_delimiter(@numbers)
+    delims = check_delimiters(@numbers)
     sum = 0
     negs = []
 
-    @numbers.split("#{delim}").each do |x|
+    @numbers.split(Regexp.union(delims)).each do |x|
       n = clean_int(x)
       if n < 0
         negs.push(n)
@@ -25,12 +25,12 @@ class Calculator < ApplicationRecord
     return sum
   end
 
-  def check_delimiter(numbers)
+  def check_delimiters(numbers)
     return "," if numbers.first != "/"
 
-    delim = numbers[/\[.*?\]/] if numbers[2] == '['
+    delim = find_all_delims(numbers) if numbers[2] == '['
 
-    return delim.nil? ? numbers[2] : delim[1..-2]
+    return delim.nil? ? numbers[2] : delim
   end
 
   def neg_error(nums)
@@ -40,5 +40,25 @@ class Calculator < ApplicationRecord
   def clean_int(num)
     ans = num.scan(/-?\d+/)
     return ans.first.to_i
+  end
+
+  def find_all_delims(numbers)
+    check = false
+    finder = 0
+    delims = []
+    
+    while check == false
+      text = numbers[finder..-1]
+      
+      delim = text[/\[.*?\]/]
+      if delim.nil?
+        check = true
+      else
+        delims.push(delim[1..-2])
+        finder = numbers.index(delim) + 1
+      end
+    end
+
+    return delims
   end
 end
